@@ -43,7 +43,7 @@ public class LoginpageTest extends BpoBase{
 	}
 	
 	@Test(priority=3)
-	public void logintest()
+	public void logintest() throws InterruptedException
 	{
 		objhomePage=objloginpage.login(prop.getProperty("username"), prop.getProperty("password"));
 	}
@@ -52,7 +52,7 @@ public class LoginpageTest extends BpoBase{
 	@AfterMethod
 	public void tearDown()
 	{
-		driver.quit();
+//		driver.quit();
 	}
 
 

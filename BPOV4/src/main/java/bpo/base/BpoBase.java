@@ -64,7 +64,7 @@ public class BpoBase {
 		driver.manage().timeouts().pageLoadTimeout(BpoUtil.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(BpoUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
 		driver.get(prop.getProperty("baseurl"));
-		System.out.println("Url entered");
+		
 	}
 	
 }

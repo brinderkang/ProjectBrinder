@@ -36,13 +36,15 @@ public class LoginPage extends BpoBase {
 	{
 		return logo.isDisplayed();
 	}
-	public HomePage login(String un,String pwd)
+	public HomePage login(String un, String pwd) throws InterruptedException
 	{
+		
 		username.clear();
-		username.sendKeys(un);
+		username.sendKeys(un);	
 		password.clear();
 		password.sendKeys(pwd);
 		loginbtn.click();
+		Thread.sleep(15000);
 		return new HomePage();
 	}
 
