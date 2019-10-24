@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
@@ -25,7 +26,9 @@ public class BpoBase {
 	{
 		prop=new Properties();
 		try {
-			FileInputStream file = new FileInputStream("D:\\Eclipse\\workspace\\BPOV4\\src\\main\\java\\bpo\\config\\BpoConfig.properties");
+			 String current = new java.io.File( "." ).getCanonicalPath();
+//			FileInputStream file = new FileInputStream("D:\\Eclipse\\workspace\\BPOV4\\src\\main\\java\\bpo\\config\\BpoConfig.properties");
+			FileInputStream file = new FileInputStream(current+"\\src\\main\\java\\bpo\\config\\BpoConfig.properties");
 			prop.load(file);
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
@@ -37,14 +40,19 @@ public class BpoBase {
 		}
 	}
 	
-	public void initialisation()
+	public void initialisation() throws InterruptedException 
 	{
 		String browsername=prop.getProperty("browser");
+		String url=prop.getProperty("baseurl");
+		System.out.println("done");
 		
 		if(browsername.equalsIgnoreCase("chrome"))
 		{
 			System.setProperty("webdriver.chrome.driver", "D:\\Brinder\\BrowserDrivers\\chromedriver.exe");
-			driver=new ChromeDriver();			
+			ChromeOptions options=new ChromeOptions();
+			options.addArguments("--profile-directory=Default");
+			options.addArguments("user-data-dir=C:\\Users\\brinderjeet.singh\\Desktop\\WebDriver - Chrome");
+			driver=new ChromeDriver(options);			
 			
 		}
 		if(browsername.equalsIgnoreCase("firefox"))
@@ -60,11 +68,13 @@ public class BpoBase {
 		
 		
 		driver.manage().window().maximize();
-		driver.manage().deleteAllCookies();
+//		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().pageLoadTimeout(BpoUtil.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(BpoUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
 		driver.get(prop.getProperty("baseurl"));
+		Thread.sleep(1000);
 		
+				
 	}
 	
 }

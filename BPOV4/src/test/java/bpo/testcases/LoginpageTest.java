@@ -1,5 +1,7 @@
 package bpo.testcases;
 
+import java.awt.AWTException;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -21,7 +23,7 @@ public class LoginpageTest extends BpoBase{
 	}
 	
 	@BeforeMethod
-	public void setup()
+	public void setup() throws InterruptedException
 	{
 		initialisation();
 		objloginpage=new LoginPage();
@@ -43,7 +45,7 @@ public class LoginpageTest extends BpoBase{
 	}
 	
 	@Test(priority=3)
-	public void logintest() throws InterruptedException
+	public void logintest() throws InterruptedException, AWTException
 	{
 		objhomePage=objloginpage.login(prop.getProperty("username"), prop.getProperty("password"));
 	}
@@ -52,7 +54,7 @@ public class LoginpageTest extends BpoBase{
 	@AfterMethod
 	public void tearDown()
 	{
-//		driver.quit();
+		driver.quit();
 	}
 
 

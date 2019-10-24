@@ -1,5 +1,7 @@
 package bpo.testcases;
 
+import java.awt.AWTException;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -23,7 +25,7 @@ public class HomePageTest extends BpoBase {
 	}
 	
 	@BeforeMethod
-	public void setup() throws InterruptedException
+	public void setup() throws InterruptedException, AWTException
 	{
 		initialisation();
 		
@@ -32,45 +34,45 @@ public class HomePageTest extends BpoBase {
 		objhomepage=objloginpage.login(prop.getProperty("username"), prop.getProperty("password"));			
 	}
 	
-	@Test
+	@Test(priority=1)
 	public void homepagelogotest()
 	{
 		boolean logo=objhomepage.HomepageLogo();
 		Assert.assertTrue(logo, "Logo not matched");
 	}
 	
-//	@Test
-//	public void headerLinks()
-//	{
-//		boolean link=objhomepage.profilelink();
-//		boolean support=objhomepage.supportlink();
-//		boolean logout=objhomepage.logoutlink();		
-//	}
-//	
-//	@Test
-//	public void companynametest()
-//	{
-//		String companyname=objhomepage.CompanyName();
-//		Assert.assertEquals(companyname, "BPO Intelligence Pty Ltd");
-//	}
-//	
-//	@Test
-//	public void logoutLabel()
-//	{
-//		String logout=objhomepage.logoutlable();
-//		Assert.assertEquals(logout, "Logout");
-//	}
-//	
-//	@Test
-//	public void clickbpoquotationtab()
-//	{
-//		objbpoquotation=objhomepage.BPOQuotationTile();
-//	}
+	@Test(priority=2)
+	public void headerLinks()
+	{
+		boolean link=objhomepage.profilelink();
+		boolean support=objhomepage.supportlink();
+		boolean logout=objhomepage.logoutlink();		
+	}
+	
+	@Test(priority=3)
+	public void companynametest()
+	{
+		String companyname=objhomepage.CompanyName();
+		Assert.assertEquals(companyname, "BPO Intelligence Pty Ltd");
+	}
+	
+	@Test(priority=4)
+	public void logoutLabel()
+	{
+		String logout=objhomepage.logoutlable();
+		Assert.assertEquals(logout, "LOGOUT");
+	}
+	
+	@Test(priority=5)
+	public void clickbpoquotationtab()
+	{
+		objbpoquotation=objhomepage.BPOQuotationTile();
+	}
 	
 	@AfterMethod
 	public void teardown()
 	{
-//		driver.close();
-//		driver.quit();
+		driver.close();
+		driver.quit();
 	}
 }

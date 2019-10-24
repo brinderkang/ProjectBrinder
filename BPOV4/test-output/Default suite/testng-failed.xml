@@ -3,13 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="bpo.testcases.HomePageTest">
+      <class name="bpo.testcases.BpoQuotationPagetest">
         <methods>
-          <include name="homepagelogotest"/>
-          <include name="setup"/>
-          <include name="teardown"/>
+          <include name="Teardown"/>
+          <include name="searchpaneltest"/>
+          <include name="SetUp"/>
         </methods>
-      </class> <!-- bpo.testcases.HomePageTest -->
+      </class> <!-- bpo.testcases.BpoQuotationPagetest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
